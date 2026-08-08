@@ -1,0 +1,20 @@
+sequenceDiagram
+participant U as User
+participant F as Frontend
+participant B as Backend
+participant G as Gemini
+participant W as Whisper
+participant D as Database
+U->>F: Start interview
+F->>B: POST /interview/start
+B->>G: Generate questions
+G-->>B: Questions
+B->>D: Store questions
+B-->>F: Interview session data
+U->>F: Record answer
+F->>B: POST /interview/answer
+B->>G: Evaluate answer
+B->>W: Transcribe audio
+W-->>B: Transcript
+B->>D: Store results
+B-->>F: Evaluation
