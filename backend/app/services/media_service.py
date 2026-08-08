@@ -124,10 +124,18 @@ class MediaAnalysisService:
         return self.analyze_frame(frame)
 
     def _extract_eye_and_iris_points(self, landmarks: list[Any], width: int, height: int) -> dict[str, Any]:
-        left_eye = [landmarks[159], landmarks[145], landmarks[133]]
-        right_eye = [landmarks[386], landmarks[374], landmarks[362]]
-        left_iris = landmarks[468]
-        right_iris = landmarks[473]
+        left_eye = [
+            landmarks[159] if len(landmarks) > 159 else landmarks[0],
+            landmarks[145] if len(landmarks) > 145 else landmarks[0],
+            landmarks[133] if len(landmarks) > 133 else landmarks[0],
+        ]
+        right_eye = [
+            landmarks[386] if len(landmarks) > 386 else landmarks[0],
+            landmarks[374] if len(landmarks) > 374 else landmarks[0],
+            landmarks[362] if len(landmarks) > 362 else landmarks[0],
+        ]
+        left_iris = landmarks[468] if len(landmarks) > 468 else landmarks[0]
+        right_iris = landmarks[473] if len(landmarks) > 473 else landmarks[0]
 
         eye_landmarks = {
             "left": [self._point_to_dict(point, width, height) for point in left_eye],

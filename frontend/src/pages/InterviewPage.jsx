@@ -244,7 +244,7 @@ export default function InterviewPage() {
           <p className="text-sm text-slate-400">Current Question</p>
           <p className="mt-2 text-lg">{currentQuestion?.text || question}</p>
         </div>
-        <div className="mt-4 overflow-hidden rounded-2xl border border-slate-700 bg-black">
+        <div className="relative mt-4 overflow-hidden rounded-2xl border border-slate-700 bg-black">
           <video ref={videoRef} className="h-72 w-full object-cover" playsInline muted />
           <canvas ref={canvasRef} className="hidden" />
           <div className="absolute left-3 top-3 rounded-full bg-slate-950/70 px-3 py-1 text-xs text-slate-200">
